@@ -1,0 +1,30 @@
+# Node.js dependencies
+node_modules/
+
+# SQLite database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+
+# Environment variables
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Temporary files
+*.tmp
+*.temp
+
+# npm cache
+.npm/
+
+# Package lock (optional)
+# package-lock.json

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--four components, two input fields and two button fields-->
+<html lang="en">
+    <head>
+        <title>Gene Database</title>
+    </head>
+    <body>
+        <h1>Gene Database</h1>
+        <input type="text" id="gene_name" placeholder="Enter gene name">
+        <input type="text" id="sequence" placeholder="Enter gene sequence">
+        <input type="number" id="gene_id" placeholder="Enter gene ID">
+
+        <button onclick="addGene()">Add Gene</button>
+        <button onclick="loadGene()">View Genes</button>
+        <button onclick="updateGene()">Update Gene</button>
+        <button onclick="deleteGene()">Delete Gene</button>
+        <!-- to visualize the fetch results -->
+        <ul id="geneList"> </ul>
+
+    <script>
+        function addGene(){
+            const gene_name=document.getElementById('gene_name').value;
+            const sequence=document.getElementById('sequence').value;
+            fetch('/genes',{ //fetch() sends data over HTTP.
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                //api communicate in json foramt, 
+                // so we need to convert our data into json format before sending it to the server
+                //stringify is a method that converts a JavaScript object into a JSON string
+                body: JSON.stringify({
+                    gene_name, 
+                    sequence})
+            }).then(response=>response.text())
+            //"Convert this response into usable JavaScript JSON data."
+            .then(data=> {
+                alert(data);
+            });
+        }
+        function loadGene(){    
+            fetch('/genes')
+            .then(response=>response.json())
+            .then(data=>{
+                const geneList=document.getElementById('geneList');
+                geneList.innerHTML='';
+                data.forEach(gene=>{
+                    const li=document.createElement('li');
+                    li.textContent=gene.gene_name + ': ' + gene.sequence;
+                    geneList.appendChild(li);
+                });
+            });
+        }
+        function updateGene(){
+            const id=document.getElementById('gene_id').value;
+            const gene_name=document.getElementById('gene_name').value;
+            const sequence=document.getElementById('sequence').value;
+            fetch('/genes/'+id,{
+                method:'PUT',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify({
+                    gene_name,
+                    sequence
+                })
+            })
+            .then(response=>response.text())
+            .then(data=>{
+                alert(data);
+            });
+        }
+        function deleteGene(){
+            const id=document.getElementById('gene_id').value;
+            fetch('/genes/:id'+id,{
+                method:'DELETE'
+            })
+            .then(response=>response.text())
+            .then(data=>{
+                alert(data);
+                loadGene();   // refresh list
+            });
+        }
+    </script>
+    </body>
+</html>
+<!--AFTER THIS IN TERMINAL, write node server.js, and then run , and in local host 3000 , open -->

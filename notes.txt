@@ -1,0 +1,78 @@
+complete CRUD application,
+Frontend  : HTML + JavaScript
+Backend   : Node.js + Express
+Database  : SQLite
+
+JavaScript = Language
+Node.js = Runtime (allows JS to run on server)
+Express.js = Framework (makes backend development easier)
+
+node.js:A runtime environment that allows JavaScript to run on the server.
+javascript runs on browser, but using node.js server
+Browser JS = handles UI
+Node.js = handles server logic
+---------------------------------------------
+JavaScript runs inside your browser (like Chrome). JS is working only on the client side (frontend).
+Handle button clicks
+Update UI (HTML/CSS)
+Validate forms
+Make API calls
+
+Node.js lets you run JavaScript outside the browser, on your computer/server.
+Handle requests from users
+Talk to databases
+Read/write files
+Run backend logic
+
+so baiscally if u want js to run backend logic, talk to databases ,Handle backend ,Create APIs ,Build full application
+----------------------------------------------------
+Express.js is a web framework built on top of Node.js.
+Express provides ready-made tools for common backend tasks.
+Express is similar to Flask.Both create endpoints.same concept diff language
+
+One of Express's biggest features.
+MIDDLEWARE:Middleware is code that runs before reaching the final route.
+
+| Flask        | Express    |
+| ------------ | ---------- |
+| Python       | JavaScript |
+| @app.route() | app.get()  |
+| request      | req        |
+| response     | res        |
+| jsonify()    | res.json() |
+
+Node.js provides the runtime environment, 
+Express.js provides a framework that simplifies routing,request handling,middleware management,API development
+
+
+Installing Node.js
+Check if installed
+node -v
+npm -v
+Install (Windows)
+
+Download:
+
+Node.js Official Website
+
+Install the LTS version.
+
+Verify
+node -v
+
+Example:
+
+v24.5.0
+Install Packages
+
+Inside project folder:
+
+npm init -y
+
+Then:
+
+npm install express
+npm install sqlite3
+npm install body-parser
+Run Project
+node server.js
