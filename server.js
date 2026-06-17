@@ -5,8 +5,10 @@ const bodyParser = require('body-parser');
 const db = require('./database'); //connecting to the database, which we created in database.js
 
 const app = express();
+
 app.use(bodyParser.json());
 app.use(express.static('public')); //serving static files from the 'public' directory
+
 app.post('/genes', (req, res) => {
     // activating req and res,means starting loop
     const gene_name = req.body.gene_name;
