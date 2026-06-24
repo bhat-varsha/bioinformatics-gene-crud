@@ -14,8 +14,7 @@ app.post('/genes', (req, res) => {
     const gene_name = req.body.gene_name;
     const sequence = req.body.sequence; 
     db.run(
-        `INSERT INTO genes (gene_name, sequence) 
-         VALUES (?, ?)`,// ?=placeholder
+        `INSERT INTO genes (gene_name, sequence) VALUES (?, ?)`,// ?=placeholder
         // to prevent SQL injection attacks, by treating user input as data rather than executable code.
         [gene_name, sequence],//helpt to filetr out any harmful input, 
         function (err) { //error handling block
@@ -30,7 +29,9 @@ app.post('/genes', (req, res) => {
 
 //fetch data
 app.get('/genes', (req, res) => {
-    db.all(`SELECT * FROM genes`,[], (err, rows) => {
+    db.all(`SELECT * FROM genes`,
+        [],
+        (err, rows) => {
         if (err) {
             console.log(err);
             return res.send("Error");
@@ -67,7 +68,8 @@ app.delete('/genes/:id', (req, res) => {
     const id = req.params.id;
 
     db.run(
-        `DELETE FROM genes WHERE id = ?`,
+        `DELETE FROM genes
+         WHERE id = ?`,
         [id],
         function (err) {
             if (err) {
