@@ -15,7 +15,8 @@ db.serialize(()=>{ //order of command execution
 `); 
     console.log("database connected");
 });
-module.exports = db;//Share the database connection with server.js
+module.exports = db;
+//Share the database connection with server.js
 //db is a object we created earlier,which is connected to database called genes.db
 //now using module.exports, we are making  db available to other files.
 

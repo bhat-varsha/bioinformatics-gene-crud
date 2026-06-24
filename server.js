@@ -14,7 +14,8 @@ app.post('/genes', (req, res) => {
     const gene_name = req.body.gene_name;
     const sequence = req.body.sequence; 
     db.run(
-        `INSERT INTO genes (gene_name, sequence) VALUES (?, ?)`,// ?=placeholder
+        `INSERT INTO genes (gene_name, sequence) 
+         VALUES (?, ?)`,// ?=placeholder
         // to prevent SQL injection attacks, by treating user input as data rather than executable code.
         [gene_name, sequence],//helpt to filetr out any harmful input, 
         function (err) { //error handling block
